@@ -12,6 +12,7 @@ pipeline {
         }
         stage('Git Pulling') {
             steps {
+                clearWs()
                 git branch: 'main', url: 'https://github.com/vikram-epi/ecs-hello-world.git'
             }
         }
