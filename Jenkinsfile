@@ -18,7 +18,6 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awsconnectid']]) {
                 script {
                     docker.build registry
                 }
@@ -34,6 +33,7 @@ pipeline {
         }
         stage('Terraform Init') {
             steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awsconnectid']]) {
                 script {
                     
                     sh 'terraform init -backend-config=tfbackend'
