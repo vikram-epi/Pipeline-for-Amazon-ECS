@@ -13,7 +13,7 @@ pipeline {
         stage('Git Pulling') {
             steps {
                 clearWs()
-                git branch: 'main', url: 'https://github.com/vikram-epi/ecs-hello-world.git'
+                git branch: 'main', url: 'https://github.com/vikram-epi/Pipeline-for-Amazon-ECS.git'
             }
         }
         stage('Build docker image') {
