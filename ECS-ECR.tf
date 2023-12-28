@@ -15,7 +15,7 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions = jsonencode([
     {
       name   = "golang-container"
-      image  = "public.ecr.aws/g2b6m8b9/helloworldrepo:latest" #URI
+      image  = "public.ecr.aws/g2b6m8b9/hello_world:latest" #URI
       cpu    = 256
       memory = 512
       portMappings = [

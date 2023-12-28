@@ -12,8 +12,3 @@ variable "build_project" {
   type    = string
   default = "dev-build-repo"
 }
-
-variable "uri_repo" {
-  type = string
-  #The URI_REPO value is in a TF_VAR in my PC
-}

@@ -2,7 +2,7 @@ properties([parameters([choice(choices: ['Terraform-ECS-Fargate'], name: 'Terraf
 pipeline {
     agent any
     environment {
-        registry = "https://github.com/vikram-epi/Pipeline-for-Amazon-ECS.git"
+        registry = "public.ecr.aws/g2b6m8b9/helloworldrepo"
     }    
     stages {
         stage('Preparing') {
@@ -12,7 +12,8 @@ pipeline {
         }
         stage('Git Pulling') {
             steps {
-                git branch: 'main', url: 'https://github.com/vikram-epi/ecs-hello-world.git'
+                cleanWs()
+                git branch: 'main', url: 'https://github.com/vikram-epi/Pipeline-for-Amazon-ECS.git'
             }
         }
         stage('Build docker image') {
@@ -25,15 +26,15 @@ pipeline {
         stage('Push into ECR') {
             steps {
                 sh"aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/g2b6m8b9"
-                sh"docker build -t hello_world ."
-                sh"docker tag hello_world:latest public.ecr.aws/g2b6m8b9/hello_world:latest"
-                sh"docker push public.ecr.aws/g2b6m8b9/hello_world:latest"
+                sh"docker build -t helloworldrepo ."
+                sh"docker tag helloworldrepo:latest public.ecr.aws/g2b6m8b9/helloworldrepo:latest"
+                sh"docker push public.ecr.aws/g2b6m8b9/helloworldrepo:latest"
             }
         }
         stage('Terraform Init') {
             steps {
                 script {
-                    dir('./terraform/accounts/dev/ecs'){
+                    
                     sh 'terraform init'
                     sh 'terraform plan -input=false -out tfplan'
                     sh 'terraform show -no-color tfplan > tfplan.txt'
@@ -46,7 +47,7 @@ pipeline {
                                     }
                                     sh "terraform apply --auto-approve"
                                 }                                                                                  
-                }}
+                }
             }
         }
         
