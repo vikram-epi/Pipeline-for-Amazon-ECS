@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Git Pulling') {
             steps {
-                clearWs()
+                cleanWs()
                 git branch: 'main', url: 'https://github.com/vikram-epi/Pipeline-for-Amazon-ECS.git'
             }
         }
