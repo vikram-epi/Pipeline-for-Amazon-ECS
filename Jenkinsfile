@@ -33,6 +33,7 @@ pipeline {
         }
         stage('Terraform Init') {
             steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awsconnect']]) {
                 script {
                     
                     sh 'terraform init -backend-config=tfbackend'
@@ -47,6 +48,7 @@ pipeline {
                                     }
                                     sh "terraform apply --auto-approve"
                                 }                                                                                  
+                }
                 }
             }
         }
