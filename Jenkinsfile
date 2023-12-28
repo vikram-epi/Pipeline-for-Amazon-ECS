@@ -18,6 +18,7 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awsconnectid']]) {
                 script {
                     docker.build registry
                 }
@@ -48,6 +49,7 @@ pipeline {
                                     sh "terraform apply --auto-approve"
                                 }                                                                                  
                 }
+            }
             }
         }
         
