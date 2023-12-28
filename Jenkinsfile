@@ -2,8 +2,6 @@ properties([parameters([choice(choices: ['Terraform-ECS-Fargate'], name: 'Terraf
 pipeline {
     agent any
     environment {
-        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
-        AWS_SECRETE_ACCESS_KEY = credenttials('AWS_SECRETE_ACCESS_KEY')
         registry = "public.ecr.aws/g2b6m8b9/helloworldrepo"
     }    
     stages {
