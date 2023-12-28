@@ -2,12 +2,17 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.51"
+      version = "~> 4.18.0"
     }
+  }
+
+  backend "s3" {
+    bucket         	   = "mycomponents-tfstate1"
+    key              	   = "terraform.tfstate"
+    region         	   = "us-east-1"
+    encrypt        	   = true
   }
 }
 provider "aws" {
-  profile = "default"
   region  = "us-east-1"
 }
-
