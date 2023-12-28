@@ -2,7 +2,7 @@ properties([parameters([choice(choices: ['Terraform-ECS-Fargate'], name: 'Terraf
 pipeline {
     agent any
     environment {
-        registry = "https://github.com/vikram-epi/Pipeline-for-Amazon-ECS.git"
+        registry = "public.ecr.aws/g2b6m8b9/helloworldrepo"
     }    
     stages {
         stage('Preparing') {
