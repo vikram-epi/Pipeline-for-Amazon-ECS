@@ -1,17 +1,5 @@
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ecr:GetAuthorizationToken",
-                "ecr:BatchCheckLayerAvailability",
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-            ],
-            "Resource": "*"
-        }
-    ]
+resource "aws_iam_role_policy" "iam-policy" {
+  name   = "AWS-ECS-Execution-Role"
+  role   = aws_iam_role.iam-role.id
+  policy = file("${path.module}/iam-policy.json")
 }
