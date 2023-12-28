@@ -1,0 +1,3 @@
+bucket="mycomponents-tfstate1"
+region="us-east-1"
+key="terraform-dev.tfstate"
