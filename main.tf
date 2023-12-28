@@ -1,16 +1,3 @@
-terraform {
-  backend "s3" {
-  }
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-    }
-}
-}
-provider "aws" {
-  region = "us-east-1"
-}
-
 # ECS CLUSTER
 resource "aws_ecs_cluster" "ecs-cluster" {
   name = "clusterDev"
